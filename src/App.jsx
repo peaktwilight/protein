@@ -113,7 +113,7 @@ function App() {
             </h1>
           </div>
           <p className="text-gray-500 text-sm sm:text-base">
-            Find the best protein deals at Migros, Coop, Lidl & Aldi
+            A tool I built for myself, now free for everyone in Switzerland
           </p>
         </header>
 
@@ -268,10 +268,22 @@ function App() {
 
         {/* Footer */}
         <footer className="mt-12 pt-6 border-t border-gray-200 text-center">
-          <p className="text-gray-500 text-sm mb-2">
-            Made by <a href="https://doruk.ch" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-600 transition-colors">Doruk</a> for Swiss fitness community
+          <p className="text-gray-600 text-sm mb-1">
+            100% free, no ads, no signup
+          </p>
+          <p className="text-gray-500 text-sm mb-3">
+            Made by <a href="https://doruk.ch" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-600 transition-colors">Doruk</a> • Open source & community-driven
           </p>
           <div className="flex items-center justify-center gap-3 text-xs">
+            <a
+              href="https://github.com/peaktwilight/protein"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-500 hover:text-red-600 transition-colors"
+            >
+              Contribute on GitHub
+            </a>
+            <span className="text-gray-300">•</span>
             <a
               href="https://www.linkedin.com/in/doruk-ozturk"
               target="_blank"
@@ -279,15 +291,6 @@ function App() {
               className="text-gray-500 hover:text-red-600 transition-colors"
             >
               LinkedIn
-            </a>
-            <span className="text-gray-300">•</span>
-            <a
-              href="https://github.com/peaktwilight/protein"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-500 hover:text-red-600 transition-colors"
-            >
-              GitHub
             </a>
           </div>
         </footer>

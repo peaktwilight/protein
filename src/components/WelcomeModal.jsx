@@ -20,7 +20,7 @@ function WelcomeModal({ onChooseDoruk, onStartFresh }) {
           Swiss Protein Tracker
         </h1>
         <p className="text-gray-500 text-center text-sm mb-8">
-          Track protein, hit goals, save money
+          A tool I built for myself, now free for everyone
         </p>
 
         <div className="space-y-3">
