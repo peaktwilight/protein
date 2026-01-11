@@ -300,6 +300,71 @@ const DORUKS_DATA = [
     calories: 134.3,
     proteinPer100: 9.5,
     caloriesPer100: 79
+  },
+  {
+    id: 24,
+    name: "Spaghetti Bolognese",
+    brand: "M-Budget",
+    location: "Migros",
+    taste: 9,
+    price: 2.80,
+    size: 400,
+    protein: 21.2,
+    calories: 532,
+    proteinPer100: 5.3,
+    caloriesPer100: 133
+  },
+  {
+    id: 25,
+    name: "Poulet Mah Mee",
+    brand: "M-Budget",
+    location: "Migros",
+    taste: 6,
+    price: 3.75,
+    size: 400,
+    protein: 27.2,
+    calories: 532,
+    proteinPer100: 6.8,
+    caloriesPer100: 133
+  },
+  {
+    id: 26,
+    name: "Chicken Nuggets",
+    brand: "M-Budget",
+    location: "Migros",
+    taste: 8,
+    price: 7.00,
+    size: 750,
+    protein: 105.0,
+    calories: 1343,
+    proteinPer100: 14.0,
+    caloriesPer100: 179
+  },
+  {
+    id: 27,
+    name: "Pommes Frites",
+    brand: "M-Budget",
+    location: "Migros",
+    taste: 8,
+    price: 8.00,
+    size: 2500,
+    protein: 50.0,
+    calories: 3650,
+    proteinPer100: 2.0,
+    caloriesPer100: 146
+  },
+  {
+    id: 28,
+    name: "Vegetable Meatballs",
+    brand: "M-Budget",
+    location: "Migros",
+    taste: 7,
+    price: 2.95,
+    size: 220,
+    protein: 41.8,
+    calories: 332,
+    proteinPer100: 19.0,
+    caloriesPer100: 151
   }
 ]
 
