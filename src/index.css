@@ -95,37 +95,38 @@ input[type="range"] {
   appearance: none;
   background: transparent;
   cursor: pointer;
+  height: 20px;
 }
 
 input[type="range"]::-webkit-slider-track {
-  background: var(--gray-200);
-  height: 4px;
-  border-radius: 2px;
+  background: var(--gray-300);
+  height: 6px;
+  border-radius: 3px;
 }
 
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: var(--swiss-red);
-  margin-top: -6px;
-  border: 2px solid white;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  margin-top: -7px;
+  border: 3px solid white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 input[type="range"]::-moz-range-track {
-  background: var(--gray-200);
-  height: 4px;
-  border-radius: 2px;
+  background: var(--gray-300);
+  height: 6px;
+  border-radius: 3px;
 }
 
 input[type="range"]::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: var(--swiss-red);
-  border: 2px solid white;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  border: 3px solid white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }

@@ -269,7 +269,7 @@ function App() {
         {/* Footer */}
         <footer className="mt-12 pt-6 border-t border-gray-200 text-center">
           <p className="text-gray-600 text-sm mb-1">
-            100% free, no ads, no signup
+            100% free, no ads, no signup • All data saved locally on your device
           </p>
           <p className="text-gray-500 text-sm mb-3">
             Made by <a href="https://doruk.ch" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-600 transition-colors">Doruk</a> • Open source & community-driven
