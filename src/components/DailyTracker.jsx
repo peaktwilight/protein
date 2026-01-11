@@ -131,7 +131,7 @@ function DailyTracker({ products, onClose }) {
                 step="10"
                 value={dailyGoal}
                 onChange={(e) => setDailyGoal(parseInt(e.target.value))}
-                className="flex-1"
+                className="flex-1 h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-red-600"
               />
               <input
                 type="number"
