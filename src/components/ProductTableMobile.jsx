@@ -1,13 +1,13 @@
 import React from 'react'
-import { Edit, Trash2, Trophy, TrendingUp, Sparkles, MapPin } from 'lucide-react'
+import { Edit, Trash2 } from 'lucide-react'
 
 function ProductTableMobile({ products, onEdit, onDelete }) {
-  const getScoreColor = (score) => {
+  const getScoreStyle = (score) => {
     const numScore = parseFloat(score)
-    if (numScore >= 100) return 'from-green-400 to-emerald-400'
-    if (numScore >= 80) return 'from-yellow-400 to-orange-400'
-    if (numScore >= 60) return 'from-orange-400 to-red-400'
-    return 'from-red-400 to-red-600'
+    if (numScore >= 100) return 'text-green-700 bg-green-50'
+    if (numScore >= 80) return 'text-amber-700 bg-amber-50'
+    if (numScore >= 60) return 'text-orange-700 bg-orange-50'
+    return 'text-red-700 bg-red-50'
   }
 
   const getTasteEmoji = (taste) => {
@@ -18,79 +18,74 @@ function ProductTableMobile({ products, onEdit, onDelete }) {
     return '😣'
   }
 
-  const getLocationColor = (location) => {
-    switch(location) {
-      case 'Migros': return 'bg-orange-500 text-white shadow-orange-500/30 shadow-md'
-      case 'Coop': return 'bg-red-500 text-white shadow-red-500/30 shadow-md'
-      case 'Lidl': return 'bg-blue-500 text-white shadow-blue-500/30 shadow-md'
-      case 'Aldi': return 'bg-cyan-500 text-white shadow-cyan-500/30 shadow-md'
-      case 'Online': return 'bg-purple-500 text-white shadow-purple-500/30 shadow-md'
-      default: return 'bg-gray-500 text-white shadow-gray-500/30 shadow-md'
+  const getLocationStyle = (location) => {
+    switch (location) {
+      case 'Migros': return 'bg-orange-100 text-orange-700'
+      case 'Coop': return 'bg-red-100 text-red-700'
+      case 'Lidl': return 'bg-blue-100 text-blue-700'
+      case 'Aldi': return 'bg-cyan-100 text-cyan-700'
+      case 'Online': return 'bg-purple-100 text-purple-700'
+      default: return 'bg-gray-100 text-gray-700'
     }
   }
 
   return (
     <div className="space-y-3">
       {products.map((product) => (
-        <div key={product.id} className="bg-white rounded-xl p-4 border-2 border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] hover:-translate-y-1">
+        <div key={product.id} className="bg-white rounded-lg border border-gray-200 p-4">
+          {/* Header Row */}
           <div className="flex justify-between items-start mb-3">
-            <div>
-              <h3 className="font-semibold text-gray-900 text-lg">{product.name}</h3>
-              <p className="text-sm text-gray-600">{product.brand}</p>
-              <span className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold mt-2 transform transition-all duration-300 hover:scale-110 ${getLocationColor(product.location)}`}>
-                <MapPin className="w-3 h-3" />
-                {product.location}
-              </span>
+            <div className="flex-1 min-w-0 pr-3">
+              <h3 className="font-semibold text-gray-900">{product.name}</h3>
+              <p className="text-sm text-gray-500">{product.brand}</p>
             </div>
-            <div className={`bg-gradient-to-r ${getScoreColor(product.score)} text-white px-4 py-2 rounded-xl font-black text-xl shadow-lg transform hover:scale-110 transition-all duration-300`}>
+            <span className={`px-2.5 py-1 rounded text-lg font-bold ${getScoreStyle(product.score)}`}>
               {product.score}
+            </span>
+          </div>
+
+          {/* Location */}
+          <span className={`inline-flex px-2 py-1 rounded text-xs font-medium mb-3 ${getLocationStyle(product.location)}`}>
+            {product.location}
+          </span>
+
+          {/* Stats Grid */}
+          <div className="grid grid-cols-4 gap-2 text-center mb-3">
+            <div className="bg-gray-50 rounded p-2">
+              <p className="text-xs text-gray-500">Value</p>
+              <p className="font-semibold text-green-700 text-sm">{product.proteinPerCHF}g</p>
+            </div>
+            <div className="bg-gray-50 rounded p-2">
+              <p className="text-xs text-gray-500">Taste</p>
+              <p className="font-semibold text-gray-900 text-sm">{product.taste} {getTasteEmoji(product.taste)}</p>
+            </div>
+            <div className="bg-gray-50 rounded p-2">
+              <p className="text-xs text-gray-500">Price</p>
+              <p className="font-semibold text-gray-900 text-sm">{product.price.toFixed(2)}</p>
+            </div>
+            <div className="bg-gray-50 rounded p-2">
+              <p className="text-xs text-gray-500">Protein</p>
+              <p className="font-semibold text-gray-900 text-sm">{product.protein}g</p>
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-2 mb-3">
-            <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl p-3 text-center border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
-              <div className="flex items-center justify-center gap-1 mb-1">
-                <TrendingUp className="w-3 h-3 text-green-400" />
-                <span className="text-[10px] text-gray-400">Value</span>
-              </div>
-              <p className="text-sm font-black text-green-600 bg-green-50 px-2 py-0.5 rounded-lg inline-block">{product.proteinPerCHF}g</p>
-            </div>
-            <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl p-3 text-center border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
-              <div className="flex items-center justify-center gap-1 mb-1">
-                <Sparkles className="w-3 h-3 text-yellow-500" />
-                <span className="text-[10px] text-gray-400">Taste</span>
-              </div>
-              <p className="text-sm font-black text-gray-900">{product.taste}/10 {getTasteEmoji(product.taste)}</p>
-            </div>
-            <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl p-3 text-center border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
-              <span className="text-[10px] text-gray-400 block">Price</span>
-              <p className="text-sm font-black text-orange-600 bg-orange-50 px-2 py-0.5 rounded-lg inline-block">CHF {product.price.toFixed(2)}</p>
-            </div>
-          </div>
-
-          <div className="flex items-center justify-between text-xs text-gray-600 mb-3">
-            <span>{product.protein}g protein / {product.size}g</span>
-            <span>{product.calories} cal ({product.caloriesPer100}/100g)</span>
-          </div>
-
-          <div className="flex gap-2">
+          {/* Actions */}
+          <div className="flex gap-2 pt-3 border-t border-gray-100">
             <button
               onClick={() => onEdit(product)}
-              className="flex-1 py-2 bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-lg flex items-center justify-center gap-2 transition-all"
+              className="flex-1 py-2 bg-gray-50 hover:bg-gray-100 rounded-lg text-sm text-gray-700 font-medium flex items-center justify-center gap-1.5 transition-colors"
             >
-              <Edit className="w-4 h-4 text-gray-700" />
-              <span className="text-sm text-gray-700">Edit</span>
+              <Edit className="w-4 h-4" />
+              Edit
             </button>
             <button
               onClick={() => {
-                if (confirm('Delete this product?')) {
-                  onDelete(product.id)
-                }
+                if (confirm('Delete this product?')) onDelete(product.id)
               }}
-              className="flex-1 py-2 bg-red-50 hover:bg-red-100 border border-red-300 rounded-lg flex items-center justify-center gap-2 transition-all"
+              className="flex-1 py-2 bg-gray-50 hover:bg-red-50 rounded-lg text-sm text-gray-500 hover:text-red-600 font-medium flex items-center justify-center gap-1.5 transition-colors"
             >
-              <Trash2 className="w-4 h-4 text-red-400" />
-              <span className="text-sm text-red-400">Delete</span>
+              <Trash2 className="w-4 h-4" />
+              Delete
             </button>
           </div>
         </div>

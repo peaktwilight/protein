@@ -1,57 +1,47 @@
 import React from 'react'
-import { Package, Sparkles, UserPlus, Zap, Heart, TrendingUp } from 'lucide-react'
+import { Package, UserPlus } from 'lucide-react'
+import { STARTER_PRODUCTS_COUNT } from '../store'
 
 function WelcomeModal({ onChooseDoruk, onStartFresh }) {
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-md flex items-center justify-center p-4 z-50 animate-fade-in">
-      <div className="bg-white rounded-3xl max-w-md w-full p-8 text-center border-2 border-red-200 shadow-2xl animate-slide-up">
-        <div className="mb-6">
-          <div className="text-6xl mb-4 animate-bounce-slow">🇨🇭</div>
-          <h1 className="text-3xl font-bold text-red-600 mb-3">
-            Welcome, Swiss Friend! 👋
-          </h1>
-          <p className="text-gray-700 text-base leading-relaxed">
-            I'm Doruk - I built this free tool for everyone in Switzerland
-          </p>
-          <p className="text-gray-600 text-sm mt-2">
-            Track your protein, hit your goals, save money - no powder needed!
-          </p>
+    <div className="fixed inset-0 bg-black/40 flex items-center justify-center p-4 z-50 animate-fade-in">
+      <div className="bg-white rounded-lg max-w-sm w-full p-8 animate-slide-up">
+        {/* Swiss Cross */}
+        <div className="flex justify-center mb-6">
+          <div className="w-12 h-12 bg-red-600 rounded flex items-center justify-center">
+            <svg viewBox="0 0 32 32" className="w-8 h-8 text-white" fill="currentColor">
+              <rect x="13" y="6" width="6" height="20" />
+              <rect x="6" y="13" width="20" height="6" />
+            </svg>
+          </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-3 mb-6">
-          <div className="bg-green-50 rounded-xl p-3 border border-green-200">
-            <Zap className="w-5 h-5 text-green-600 mx-auto mb-1" />
-            <p className="text-xs text-gray-700">CHF/Protein</p>
-          </div>
-          <div className="bg-red-50 rounded-xl p-3 border border-red-200">
-            <Heart className="w-5 h-5 text-red-600 mx-auto mb-1" />
-            <p className="text-xs text-gray-700">My Taste</p>
-          </div>
-          <div className="bg-blue-50 rounded-xl p-3 border border-blue-200">
-            <TrendingUp className="w-5 h-5 text-blue-600 mx-auto mb-1" />
-            <p className="text-xs text-gray-700">Real Food</p>
-          </div>
-        </div>
+        <h1 className="text-2xl font-bold text-center text-gray-900 mb-2">
+          Swiss Protein Tracker
+        </h1>
+        <p className="text-gray-500 text-center text-sm mb-8">
+          Track protein, hit goals, save money
+        </p>
 
         <div className="space-y-3">
           <button
             onClick={onChooseDoruk}
-            className="w-full py-4 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 rounded-xl text-white font-semibold flex items-center justify-center gap-2 transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-red-500/25"
+            className="w-full py-3 px-4 bg-red-600 hover:bg-red-700 rounded-lg text-white font-medium flex items-center justify-center gap-2 transition-colors"
           >
-            <Package className="w-5 h-5" />
-            Start with My Top 20 (Tested & Rated)
+            <Package className="w-4 h-4" />
+            Start with {STARTER_PRODUCTS_COUNT} Products
           </button>
           <button
             onClick={onStartFresh}
-            className="w-full py-4 bg-white hover:bg-gray-50 border-2 border-gray-300 rounded-xl text-gray-700 font-medium flex items-center justify-center gap-2 transition-all duration-300"
+            className="w-full py-3 px-4 bg-white hover:bg-gray-50 border border-gray-200 rounded-lg text-gray-700 font-medium flex items-center justify-center gap-2 transition-colors"
           >
-            <UserPlus className="w-5 h-5" />
-            Create Your Own List
+            <UserPlus className="w-4 h-4" />
+            Start Fresh
           </button>
         </div>
 
-        <p className="text-xs text-gray-600 mt-6">
-          100% Free • No ads • No signup • Made for Swiss people
+        <p className="text-xs text-gray-400 text-center mt-6">
+          Free • No ads • No signup
         </p>
       </div>
     </div>

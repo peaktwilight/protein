@@ -43,16 +43,16 @@ const DORUKS_DATA = [
   },
   {
     id: 4,
-    name: "High Protein Milk Drink",
-    brand: "Crane",
+    name: "High Protein Milch",
+    brand: "CRANE",
     location: "Aldi",
     taste: 9,
-    price: 2.39,
+    price: 2.25,
     size: 1000,
     protein: 70.0,
-    calories: 390,
+    calories: 350,
     proteinPer100: 7.0,
-    caloriesPer100: 39
+    caloriesPer100: 35
   },
   {
     id: 5,
@@ -451,5 +451,7 @@ const useStore = create(
     }
   )
 )
+
+export const STARTER_PRODUCTS_COUNT = DORUKS_DATA.length
 
 export default useStore

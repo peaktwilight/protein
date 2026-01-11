@@ -6,7 +6,7 @@ import ProductCard from './components/ProductCard'
 import AddProductModal from './components/AddProductModal'
 import WelcomeModal from './components/WelcomeModal'
 import DailyTracker from './components/DailyTracker'
-import { Download, Upload, Plus, Grid, List, Trophy, Package, Coins, Target, TrendingUp, Sparkles, RefreshCw } from 'lucide-react'
+import { Download, Upload, Plus, Grid, List, Target, RotateCcw } from 'lucide-react'
 
 function App() {
   const [viewMode, setViewMode] = useState('table')
@@ -18,25 +18,23 @@ function App() {
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 640)
-    }
+    const checkMobile = () => setIsMobile(window.innerWidth < 640)
     checkMobile()
     window.addEventListener('resize', checkMobile)
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
-  
-  const { 
-    products, 
+
+  const {
+    products,
     isFirstTime,
     initWithDoruksData,
     initEmpty,
-    addProduct, 
-    updateProduct, 
+    addProduct,
+    updateProduct,
     deleteProduct,
     exportData,
     importData,
-    resetToWelcome 
+    resetToWelcome
   } = useStore()
 
   const handleImport = (e) => {
@@ -47,9 +45,8 @@ function App() {
         try {
           const data = JSON.parse(e.target.result)
           importData(data)
-          alert('Data imported successfully!')
         } catch (error) {
-          alert('Error importing data. Please check the file format.')
+          alert('Error importing data')
         }
       }
       reader.readAsText(file)
@@ -73,25 +70,18 @@ function App() {
 
   const sortedProducts = [...products].sort((a, b) => {
     switch (sortBy) {
-      case 'score':
-        return parseFloat(b.score) - parseFloat(a.score)
-      case 'proteinPerCHF':
-        return parseFloat(b.proteinPerCHF) - parseFloat(a.proteinPerCHF)
-      case 'taste':
-        return b.taste - a.taste
-      case 'price':
-        return a.price - b.price
-      case 'protein':
-        return b.protein - a.protein
-      case 'calories':
-        return a.calories - b.calories
-      default:
-        return 0
+      case 'score': return parseFloat(b.score) - parseFloat(a.score)
+      case 'proteinPerCHF': return parseFloat(b.proteinPerCHF) - parseFloat(a.proteinPerCHF)
+      case 'taste': return b.taste - a.taste
+      case 'price': return a.price - b.price
+      case 'protein': return b.protein - a.protein
+      case 'calories': return a.calories - b.calories
+      default: return 0
     }
   })
 
-  const filteredProducts = filterLocation === 'all' 
-    ? sortedProducts 
+  const filteredProducts = filterLocation === 'all'
+    ? sortedProducts
     : sortedProducts.filter(p => p.location === filterLocation)
 
   const locations = ['all', ...new Set(products.map(p => p.location))]
@@ -103,77 +93,70 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <div className="min-h-screen bg-gray-50">
       {isFirstTime && (
-        <WelcomeModal 
+        <WelcomeModal
           onChooseDoruk={initWithDoruksData}
           onStartFresh={initEmpty}
         />
       )}
-      
-      <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-8">
-        <header className="text-center mb-8 animate-fade-in">
-          <div className="inline-block">
-            <h1 className="text-4xl sm:text-6xl font-black mb-3 bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent">
+
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        {/* Header */}
+        <header className="mb-8">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-8 h-8 bg-red-600 rounded flex items-center justify-center flex-shrink-0">
+              <svg viewBox="0 0 32 32" className="w-5 h-5 text-white" fill="currentColor">
+                <rect x="13" y="6" width="6" height="20" />
+                <rect x="6" y="13" width="20" height="6" />
+              </svg>
+            </div>
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
               Swiss Protein Tracker
             </h1>
-            <div className="h-1 bg-gradient-to-r from-red-600 to-red-700 rounded-full mb-4"></div>
           </div>
-          <p className="text-gray-700 text-lg sm:text-xl font-semibold">Free tool for everyone in Switzerland hitting their protein goals</p>
-          <p className="text-gray-600 text-sm sm:text-base mt-2">140g daily from Migros, Coop, Lidl & Aldi - no powder, just real food!</p>
+          <p className="text-gray-500 text-sm sm:text-base">
+            Find the best protein deals at Migros, Coop, Lidl & Aldi
+          </p>
         </header>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          <div className="bg-white rounded-xl p-4 flex items-center gap-3 border-2 border-gray-100 hover:scale-105 transition-all duration-500 hover:shadow-2xl hover:border-red-200 transform hover:-translate-y-1 group">
-            <div className="bg-gradient-to-br from-red-500 to-red-600 p-3 rounded-xl shadow-lg shadow-red-500/30 group-hover:shadow-xl group-hover:shadow-red-500/40 transition-all duration-500">
-              <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-            </div>
-            <div>
-              <p className="text-[10px] sm:text-xs text-gray-500 uppercase tracking-wider font-semibold">Avg Score</p>
-              <p className="text-xl sm:text-2xl font-black text-gray-900 group-hover:scale-110 transition-transform duration-300">{stats.avgScore}</p>
-            </div>
+        {/* Stats Row */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-4">
+            <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Products</p>
+            <p className="text-2xl font-bold text-gray-900">{stats.totalProducts}</p>
           </div>
-          <div className="bg-white rounded-xl p-4 flex items-center gap-3 border-2 border-gray-100 hover:scale-105 transition-all duration-500 hover:shadow-2xl hover:border-green-200 transform hover:-translate-y-1 group">
-            <div className="bg-gradient-to-br from-green-500 to-green-600 p-3 rounded-xl shadow-lg shadow-green-500/30 group-hover:shadow-xl group-hover:shadow-green-500/40 transition-all duration-500">
-              <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-            </div>
-            <div>
-              <p className="text-[10px] sm:text-xs text-gray-500 uppercase tracking-wider font-semibold">Value</p>
-              <p className="text-xl sm:text-2xl font-black text-gray-900 group-hover:scale-110 transition-transform duration-300">{stats.avgProteinPerCHF}<span className="text-sm sm:text-base text-gray-500">g/CHF</span></p>
-            </div>
+          <div className="bg-white rounded-lg border border-gray-200 p-4">
+            <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Avg Score</p>
+            <p className="text-2xl font-bold text-gray-900">{stats.avgScore}</p>
           </div>
-          <div className="bg-white rounded-xl p-4 flex items-center gap-3 border-2 border-gray-100 hover:scale-105 transition-all duration-500 hover:shadow-2xl hover:border-blue-200 transform hover:-translate-y-1 group">
-            <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-3 rounded-xl shadow-lg shadow-blue-500/30 group-hover:shadow-xl group-hover:shadow-blue-500/40 transition-all duration-500">
-              <Package className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-            </div>
-            <div>
-              <p className="text-[10px] sm:text-xs text-gray-500 uppercase tracking-wider font-semibold">Products</p>
-              <p className="text-xl sm:text-2xl font-black text-gray-900 group-hover:scale-110 transition-transform duration-300">{stats.totalProducts}</p>
-            </div>
+          <div className="bg-white rounded-lg border border-gray-200 p-4">
+            <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Avg Value</p>
+            <p className="text-2xl font-bold text-gray-900">{stats.avgProteinPerCHF}<span className="text-sm font-normal text-gray-500">g/CHF</span></p>
           </div>
           <button
             onClick={() => setShowDailyTracker(true)}
-            className="bg-gradient-to-br from-red-600 to-red-700 rounded-xl p-4 flex items-center gap-3 hover:scale-105 transition-all duration-500 hover:shadow-2xl hover:from-red-700 hover:to-red-800 cursor-pointer transform hover:-translate-y-1 group shadow-lg shadow-red-600/30"
+            className="bg-red-600 hover:bg-red-700 rounded-lg p-4 text-left transition-colors"
           >
-            <div className="bg-white/20 p-3 rounded-xl group-hover:bg-white/30 transition-all duration-500">
-              <Target className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:scale-110 transition-transform duration-300" />
+            <div className="flex items-center gap-2 mb-1">
+              <Target className="w-4 h-4 text-red-200" />
+              <p className="text-xs text-red-200 uppercase tracking-wide">Daily</p>
             </div>
-            <div className="text-left">
-              <p className="text-[10px] sm:text-xs text-white/90 uppercase tracking-wider font-semibold">Daily Goal</p>
-              <p className="text-xl sm:text-2xl font-black text-white group-hover:scale-110 transition-transform duration-300">Track</p>
-            </div>
+            <p className="text-2xl font-bold text-white">Track</p>
           </button>
         </div>
 
-        <div className="bg-white rounded-2xl p-6 mb-8 border-2 border-gray-100 shadow-xl hover:shadow-2xl transition-all duration-500">
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 sm:items-center sm:justify-between">
-            <div className="flex gap-2 w-full sm:w-auto">
+        {/* Controls */}
+        <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
+          <div className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
+            {/* View Toggle */}
+            <div className="flex gap-1 p-1 bg-gray-100 rounded-lg w-fit">
               <button
                 onClick={() => setViewMode('table')}
-                className={`flex-1 sm:flex-initial px-4 py-2.5 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 font-semibold transform ${
-                  viewMode === 'table' 
-                    ? 'bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg scale-105 shadow-red-600/30' 
-                    : 'bg-white border-2 border-gray-200 text-gray-700 hover:border-red-300 hover:shadow-md'
+                className={`px-3 py-1.5 rounded-md flex items-center gap-1.5 text-sm font-medium transition-colors ${
+                  viewMode === 'table'
+                    ? 'bg-white text-gray-900 shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
                 <List className="w-4 h-4" />
@@ -181,10 +164,10 @@ function App() {
               </button>
               <button
                 onClick={() => setViewMode('cards')}
-                className={`flex-1 sm:flex-initial px-4 py-2.5 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 font-semibold transform ${
-                  viewMode === 'cards' 
-                    ? 'bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg scale-105 shadow-red-600/30' 
-                    : 'bg-white border-2 border-gray-200 text-gray-700 hover:border-red-300 hover:shadow-md'
+                className={`px-3 py-1.5 rounded-md flex items-center gap-1.5 text-sm font-medium transition-colors ${
+                  viewMode === 'cards'
+                    ? 'bg-white text-gray-900 shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
                 <Grid className="w-4 h-4" />
@@ -192,79 +175,69 @@ function App() {
               </button>
             </div>
 
-            <div className="flex gap-2 w-full sm:w-auto">
+            {/* Filters */}
+            <div className="flex gap-2 flex-1 sm:flex-initial">
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-white text-gray-900 text-sm sm:text-base border-2 border-gray-200 focus:border-red-500 focus:outline-none transition-all duration-300 hover:border-gray-300 hover:shadow-md font-medium"
+                className="flex-1 sm:flex-initial px-3 py-2 rounded-lg bg-white text-gray-900 text-sm border border-gray-200 focus:border-red-600 focus:outline-none"
               >
-                <option value="score">Score</option>
-                <option value="proteinPerCHF">Value</option>
-                <option value="taste">Taste</option>
-                <option value="price">Price</option>
-                <option value="protein">Protein</option>
-                <option value="calories">Calories</option>
+                <option value="score">Sort by Score</option>
+                <option value="proteinPerCHF">Sort by Value</option>
+                <option value="taste">Sort by Taste</option>
+                <option value="price">Sort by Price</option>
+                <option value="protein">Sort by Protein</option>
+                <option value="calories">Sort by Calories</option>
               </select>
-
               <select
                 value={filterLocation}
                 onChange={(e) => setFilterLocation(e.target.value)}
-                className="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-white text-gray-900 text-sm sm:text-base border-2 border-gray-200 focus:border-red-500 focus:outline-none transition-all duration-300 hover:border-gray-300 hover:shadow-md font-medium"
+                className="flex-1 sm:flex-initial px-3 py-2 rounded-lg bg-white text-gray-900 text-sm border border-gray-200 focus:border-red-600 focus:outline-none"
               >
                 {locations.map(loc => (
                   <option key={loc} value={loc}>
-                    {loc === 'all' ? 'All' : loc}
+                    {loc === 'all' ? 'All Stores' : loc}
                   </option>
                 ))}
               </select>
             </div>
 
-            <div className="flex gap-2 w-full sm:w-auto">
+            {/* Actions */}
+            <div className="flex gap-2">
               <button
                 onClick={() => setShowAddModal(true)}
-                className="flex-1 sm:flex-initial px-4 py-2.5 bg-gradient-to-r from-red-600 to-red-700 text-white hover:from-red-700 hover:to-red-800 rounded-xl flex items-center justify-center gap-2 transition-all duration-500 transform hover:scale-105 shadow-lg shadow-red-600/30 font-bold"
+                className="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg text-white text-sm font-medium flex items-center gap-1.5 transition-colors"
               >
                 <Plus className="w-4 h-4" />
-                <span className="sm:inline">Add</span>
+                Add
               </button>
-              <div className="flex gap-2">
-                <button
-                  onClick={exportData}
-                  className="px-4 py-2.5 bg-white border-2 border-gray-200 hover:border-gray-300 rounded-xl flex items-center justify-center gap-1 transition-all duration-300 text-gray-700 hover:shadow-md font-medium"
-                  title="Export data"
-                >
-                  <Download className="w-4 h-4" />
-                  <span className="hidden lg:inline">Export</span>
-                </button>
-                <label className="px-4 py-2.5 bg-white border-2 border-gray-200 hover:border-gray-300 rounded-xl flex items-center justify-center gap-1 cursor-pointer transition-all duration-300 text-gray-700 hover:shadow-md font-medium"
-                  title="Import data"
-                >
-                  <Upload className="w-4 h-4" />
-                  <span className="hidden lg:inline">Import</span>
-                  <input
-                    type="file"
-                    accept=".json"
-                    onChange={handleImport}
-                    className="hidden"
-                  />
-                </label>
-                <button
-                  onClick={() => {
-                    if (confirm('Reset all data and start over? This will delete your current list.')) {
-                      resetToWelcome()
-                    }
-                  }}
-                  className="px-4 py-2.5 bg-white border-2 border-red-200 hover:bg-red-50 hover:border-red-300 rounded-xl flex items-center justify-center gap-1 transition-all duration-300 hover:shadow-md font-medium"
-                  title="Reset and start over"
-                >
-                  <RefreshCw className="w-4 h-4 text-red-600" />
-                  <span className="hidden lg:inline text-red-600">Reset</span>
-                </button>
-              </div>
+              <button
+                onClick={exportData}
+                className="px-3 py-2 bg-white hover:bg-gray-50 border border-gray-200 rounded-lg text-gray-700 text-sm flex items-center gap-1.5 transition-colors"
+                title="Export"
+              >
+                <Download className="w-4 h-4" />
+              </button>
+              <label className="px-3 py-2 bg-white hover:bg-gray-50 border border-gray-200 rounded-lg text-gray-700 text-sm flex items-center gap-1.5 cursor-pointer transition-colors"
+                title="Import"
+              >
+                <Upload className="w-4 h-4" />
+                <input type="file" accept=".json" onChange={handleImport} className="hidden" />
+              </label>
+              <button
+                onClick={() => {
+                  if (confirm('Reset all data?')) resetToWelcome()
+                }}
+                className="px-3 py-2 bg-white hover:bg-red-50 border border-gray-200 hover:border-red-200 rounded-lg text-gray-500 hover:text-red-600 text-sm flex items-center gap-1.5 transition-colors"
+                title="Reset"
+              >
+                <RotateCcw className="w-4 h-4" />
+              </button>
             </div>
           </div>
         </div>
 
+        {/* Products */}
         <div>
           {viewMode === 'table' ? (
             isMobile ? (
@@ -281,7 +254,7 @@ function App() {
               />
             )
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {filteredProducts.map(product => (
                 <ProductCard
                   key={product.id}
@@ -293,42 +266,24 @@ function App() {
             </div>
           )}
         </div>
-        
-        <footer className="mt-12 py-6 border-t border-gray-200 text-center">
-          <p className="text-gray-700 text-sm sm:text-base mb-3">
-            🆓 Free for all Swiss gym bros & girls 🆓
+
+        {/* Footer */}
+        <footer className="mt-12 pt-6 border-t border-gray-200 text-center">
+          <p className="text-gray-500 text-sm mb-2">
+            Made by Doruk for Swiss fitness community
           </p>
-          <p className="text-gray-600 text-xs sm:text-sm mb-2">
-            Made by Doruk (23yo student) for everyone in CH trying to build muscle on a budget
-          </p>
-          <p className="text-gray-500 text-xs mb-3">
-            My taste ratings • Your mileage may vary • Add your own products & ratings!
-          </p>
-          <div className="flex items-center justify-center gap-4 text-xs mb-4">
-            <a 
-              href="https://www.linkedin.com/in/doruk-ozturk" 
-              target="_blank" 
+          <div className="flex items-center justify-center gap-4 text-xs">
+            <a
+              href="https://www.linkedin.com/in/doruk-ozturk"
+              target="_blank"
               rel="noopener noreferrer"
-              className="text-red-600 hover:text-red-700 transition-colors flex items-center gap-1 font-semibold"
+              className="text-gray-500 hover:text-red-600 transition-colors"
             >
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-              </svg>
-              Connect on LinkedIn
+              LinkedIn
             </a>
-            <span className="text-gray-400">•</span>
-            <span className="text-gray-600">Open source & free forever</span>
+            <span className="text-gray-300">•</span>
+            <span className="text-gray-400">Free & Open Source</span>
           </div>
-          <button
-            onClick={() => {
-              if (confirm('Start fresh? This will reset everything and show the welcome screen.')) {
-                resetToWelcome()
-              }
-            }}
-            className="text-gray-500 hover:text-red-600 text-xs transition-colors"
-          >
-            Need to start over? Click here to reset
-          </button>
         </footer>
       </div>
 
@@ -344,7 +299,7 @@ function App() {
       )}
 
       {showDailyTracker && (
-        <DailyTracker 
+        <DailyTracker
           products={products}
           onClose={() => setShowDailyTracker(false)}
         />
