@@ -86,11 +86,8 @@ function App() {
 
   const locations = ['all', ...new Set(products.map(p => p.location))]
 
-  const stats = {
-    totalProducts: products.length,
-    avgScore: products.length ? (products.reduce((acc, p) => acc + parseFloat(p.score), 0) / products.length).toFixed(1) : 0,
-    avgProteinPerCHF: products.length ? (products.reduce((acc, p) => acc + parseFloat(p.proteinPerCHF), 0) / products.length).toFixed(1) : 0
-  }
+  const bestValue = products.length ? [...products].sort((a, b) => parseFloat(b.proteinPerCHF) - parseFloat(a.proteinPerCHF))[0] : null
+  const topScorer = products.length ? [...products].sort((a, b) => parseFloat(b.score) - parseFloat(a.score))[0] : null
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -124,15 +121,17 @@ function App() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
           <div className="bg-white rounded-lg border border-gray-200 p-4">
             <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Products</p>
-            <p className="text-2xl font-bold text-gray-900">{stats.totalProducts}</p>
+            <p className="text-2xl font-bold text-gray-900">{products.length}</p>
           </div>
           <div className="bg-white rounded-lg border border-gray-200 p-4">
-            <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Avg Score</p>
-            <p className="text-2xl font-bold text-gray-900">{stats.avgScore}</p>
+            <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Best Value</p>
+            <p className="text-lg font-bold text-gray-900 truncate">{bestValue?.name || '-'}</p>
+            {bestValue && <p className="text-xs text-green-600 font-medium">{bestValue.proteinPerCHF}g/CHF</p>}
           </div>
           <div className="bg-white rounded-lg border border-gray-200 p-4">
-            <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Avg Value</p>
-            <p className="text-2xl font-bold text-gray-900">{stats.avgProteinPerCHF}<span className="text-sm font-normal text-gray-500">g/CHF</span></p>
+            <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Top Scorer</p>
+            <p className="text-lg font-bold text-gray-900 truncate">{topScorer?.name || '-'}</p>
+            {topScorer && <p className="text-xs text-gray-500 font-medium">Score: {topScorer.score}</p>}
           </div>
           <button
             onClick={() => setShowDailyTracker(true)}
@@ -180,7 +179,7 @@ function App() {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="flex-1 sm:flex-initial px-3 py-2 rounded-lg bg-white text-gray-900 text-sm border border-gray-200 focus:border-red-600 focus:outline-none"
+                className="flex-1 sm:flex-initial px-3 pr-8 py-2 rounded-lg bg-white text-gray-900 text-sm border border-gray-200 focus:border-red-600 focus:outline-none"
               >
                 <option value="score">Sort by Score</option>
                 <option value="proteinPerCHF">Sort by Value</option>
@@ -192,7 +191,7 @@ function App() {
               <select
                 value={filterLocation}
                 onChange={(e) => setFilterLocation(e.target.value)}
-                className="flex-1 sm:flex-initial px-3 py-2 rounded-lg bg-white text-gray-900 text-sm border border-gray-200 focus:border-red-600 focus:outline-none"
+                className="flex-1 sm:flex-initial px-3 pr-8 py-2 rounded-lg bg-white text-gray-900 text-sm border border-gray-200 focus:border-red-600 focus:outline-none"
               >
                 {locations.map(loc => (
                   <option key={loc} value={loc}>
@@ -270,9 +269,9 @@ function App() {
         {/* Footer */}
         <footer className="mt-12 pt-6 border-t border-gray-200 text-center">
           <p className="text-gray-500 text-sm mb-2">
-            Made by Doruk for Swiss fitness community
+            Made by <a href="https://doruk.ch" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-600 transition-colors">Doruk</a> for Swiss fitness community
           </p>
-          <div className="flex items-center justify-center gap-4 text-xs">
+          <div className="flex items-center justify-center gap-3 text-xs">
             <a
               href="https://www.linkedin.com/in/doruk-ozturk"
               target="_blank"
@@ -282,7 +281,14 @@ function App() {
               LinkedIn
             </a>
             <span className="text-gray-300">•</span>
-            <span className="text-gray-400">Free & Open Source</span>
+            <a
+              href="https://github.com/peaktwilight/protein"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-500 hover:text-red-600 transition-colors"
+            >
+              GitHub
+            </a>
           </div>
         </footer>
       </div>
