@@ -10,12 +10,12 @@
     "deploy": "vite build && echo 'Upload dist/ to protein.doruk.ch'"
   },
   "dependencies": {
+    "clsx": "^2.0.0",
+    "lucide-react": "^0.292.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "zustand": "^4.4.1",
-    "lucide-react": "^0.292.0",
-    "clsx": "^2.0.0",
-    "tailwind-merge": "^2.0.0"
+    "tailwind-merge": "^2.0.0",
+    "zustand": "^4.4.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",
@@ -24,7 +24,7 @@
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.5",
-    "vite": "^5.0.0"
+    "vite": "^7.3.1"
   },
   "repository": {
     "type": "git",
