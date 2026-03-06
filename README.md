@@ -6,7 +6,7 @@ Compare protein per dollar/euro/franc, taste ratings, and calories — all in on
 
 [**Try it live**](https://protein.doruk.ch) | [Report Bug](https://github.com/peaktwilight/protein/issues) | [Request Feature](https://github.com/peaktwilight/protein/issues)
 
-<!-- Add a screenshot/gif here: ![Screenshot](screenshot.png) -->
+![Protein Tracker Screenshot](public/screenshot.png)
 
 ---
 
