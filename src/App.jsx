@@ -103,17 +103,17 @@ function App() {
         <header className="mb-8">
           <div className="flex items-center gap-3 mb-2">
             <div className="w-8 h-8 bg-red-600 rounded flex items-center justify-center flex-shrink-0">
-              <svg viewBox="0 0 32 32" className="w-5 h-5 text-white" fill="currentColor">
-                <rect x="13" y="6" width="6" height="20" />
-                <rect x="6" y="13" width="20" height="6" />
+              <svg viewBox="0 0 24 24" className="w-5 h-5 text-white" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z" />
+                <line x1="6" y1="17" x2="18" y2="17" />
               </svg>
             </div>
             <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
-              Swiss Protein Tracker
+              Protein Tracker
             </h1>
           </div>
           <p className="text-gray-500 text-sm sm:text-base">
-            A tool I built for myself, now free for everyone in Switzerland
+            Find the cheapest high-protein foods at your local stores
           </p>
         </header>
 
@@ -126,7 +126,7 @@ function App() {
           <div className="bg-white rounded-lg border border-gray-200 p-4">
             <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Best Value</p>
             <p className="text-lg font-bold text-gray-900 truncate">{bestValue?.name || '-'}</p>
-            {bestValue && <p className="text-xs text-green-600 font-medium">{bestValue.proteinPerCHF}g/CHF</p>}
+            {bestValue && <p className="text-xs text-green-600 font-medium">{bestValue.proteinPerCHF}g/$</p>}
           </div>
           <div className="bg-white rounded-lg border border-gray-200 p-4">
             <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Top Scorer</p>
@@ -269,10 +269,10 @@ function App() {
         {/* Footer */}
         <footer className="mt-12 pt-6 border-t border-gray-200 text-center">
           <p className="text-gray-600 text-sm mb-1">
-            100% free, no ads, no signup • All data saved locally on your device
+            100% free, no ads, no signup &bull; All data saved locally on your device
           </p>
           <p className="text-gray-500 text-sm mb-3">
-            Made by <a href="https://doruk.ch" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-600 transition-colors">Doruk</a> • Open source & community-driven
+            Made by <a href="https://doruk.ch" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-600 transition-colors">Doruk</a> &bull; Open source &amp; community-driven
           </p>
           <div className="flex items-center justify-center gap-3 text-xs">
             <a

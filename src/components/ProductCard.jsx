@@ -51,7 +51,7 @@ function ProductCard({ product, onEdit, onDelete }) {
       <div className="grid grid-cols-2 gap-3 mb-4">
         <div className="bg-gray-50 rounded-lg p-3">
           <p className="text-xs text-gray-500 mb-1">Value</p>
-          <p className="text-lg font-bold text-green-700">{product.proteinPerCHF}g/CHF</p>
+          <p className="text-lg font-bold text-green-700">{product.proteinPerCHF}g/$</p>
         </div>
         <div className="bg-gray-50 rounded-lg p-3">
           <p className="text-xs text-gray-500 mb-1">Taste</p>
@@ -65,7 +65,7 @@ function ProductCard({ product, onEdit, onDelete }) {
       <div className="space-y-2 text-sm border-t border-gray-100 pt-3">
         <div className="flex justify-between">
           <span className="text-gray-500">Price</span>
-          <span className="font-medium text-gray-900">CHF {product.price.toFixed(2)}</span>
+          <span className="font-medium text-gray-900">{product.price.toFixed(2)}</span>
         </div>
         <div className="flex justify-between">
           <span className="text-gray-500">Protein</span>

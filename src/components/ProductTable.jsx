@@ -70,7 +70,7 @@ function ProductTable({ products, onEdit, onDelete }) {
                 <span className="ml-1">{getTasteEmoji(product.taste)}</span>
               </td>
               <td className="px-4 py-3 text-center">
-                <span className="text-gray-900 font-medium">CHF {product.price.toFixed(2)}</span>
+                <span className="text-gray-900 font-medium">{product.price.toFixed(2)}</span>
               </td>
               <td className="px-4 py-3 text-center">
                 <div className="text-gray-900 font-medium">{product.protein}g</div>

@@ -5,47 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Primary Meta Tags -->
-    <title>Swiss Protein Tracker - Free & Open Source Tool for Switzerland</title>
-    <meta name="title" content="Swiss Protein Tracker - Free & Open Source Tool for Switzerland">
-    <meta name="description" content="100% free protein tracker I built for myself, now open for everyone in Switzerland. Compare prices at Migros, Coop, Lidl & Aldi. No ads, no signup. Open source & community-driven.">
-    <meta name="keywords" content="protein tracker, switzerland protein, cheap protein swiss, migros protein, coop protein, lidl protein, aldi protein, swiss fitness, protein calculator, daily protein tracker, budget protein switzerland, open source, free tool, community">
+    <title>Protein Tracker - Free Open Source Tool to Find Cheap High-Protein Food</title>
+    <meta name="title" content="Protein Tracker - Free Open Source Tool to Find Cheap High-Protein Food">
+    <meta name="description" content="Free protein tracker to find the cheapest high-protein foods at your local stores. Compare protein per dollar, taste ratings, and calories. No ads, no signup. Open source.">
+    <meta name="keywords" content="protein tracker, cheap protein, high protein food, protein per dollar, protein calculator, daily protein tracker, budget protein, protein comparison, grocery protein, best protein value, meal prep protein, fitness nutrition, protein goal tracker, free protein app, open source nutrition">
     <meta name="author" content="Doruk Ozturk">
     <meta name="theme-color" content="#DC2626">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://protein.doruk.ch/">
-    <meta property="og:title" content="Swiss Protein Tracker - Free & Open Source">
-    <meta property="og:description" content="100% free protein tracker I built for myself, now open for everyone in Switzerland. No ads, no signup. Open source & community-driven.">
+    <meta property="og:title" content="Protein Tracker - Find the Cheapest High-Protein Food">
+    <meta property="og:description" content="Free tool to compare protein per dollar across your local stores. Track daily protein goals, rate products, and find the best value. No ads, no signup, open source.">
     <meta property="og:image" content="https://protein.doruk.ch/og-image.png">
-    <meta property="og:locale" content="en_CH">
-    <meta property="og:site_name" content="Swiss Protein Tracker">
+    <meta property="og:site_name" content="Protein Tracker">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://protein.doruk.ch/">
-    <meta name="twitter:title" content="Swiss Protein Tracker - Free & Open Source">
-    <meta name="twitter:description" content="100% free protein tracker I built for myself, now open for everyone in Switzerland. No ads, no signup. Open source & community-driven.">
+    <meta name="twitter:title" content="Protein Tracker - Find the Cheapest High-Protein Food">
+    <meta name="twitter:description" content="Free tool to compare protein per dollar across your local stores. Track daily protein goals, rate products, and find the best value. No ads, no signup, open source.">
     <meta name="twitter:image" content="https://protein.doruk.ch/og-image.png">
 
     <!-- Additional SEO -->
     <link rel="canonical" href="https://protein.doruk.ch/">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <meta name="language" content="English">
-    <meta name="geo.region" content="CH">
-    <meta name="geo.placename" content="Switzerland">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="apple-touch-icon" href="/favicon.svg">
 
-    <!-- Structured Data -->
+    <!-- Structured Data - WebApplication -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      "name": "Swiss Protein Tracker",
-      "description": "100% free protein tracker for Switzerland. Compare prices at Migros, Coop, Lidl & Aldi. Open source and community-driven.",
+      "name": "Protein Tracker",
+      "description": "Free open source tool to find the cheapest high-protein foods at your local stores. Compare protein per dollar, track daily goals, and rate products.",
       "url": "https://protein.doruk.ch",
       "applicationCategory": "HealthApplication",
       "operatingSystem": "Any",
@@ -53,7 +49,7 @@
       "offers": {
         "@type": "Offer",
         "price": "0",
-        "priceCurrency": "CHF"
+        "priceCurrency": "USD"
       },
       "author": {
         "@type": "Person",
@@ -67,9 +63,70 @@
       }
     }
     </script>
+
+    <!-- Structured Data - FAQ (for rich snippets) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the cheapest high-protein food?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The cheapest high-protein foods vary by store and region, but common winners include chicken breast, eggs, cottage cheese, Greek yogurt, and canned tuna. Use Protein Tracker to compare protein per dollar at your local stores and find the best value."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much protein do I need per day?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most fitness guidelines recommend 1.6-2.2g of protein per kg of body weight for muscle building. For a 70kg person, that's 112-154g per day. Protein Tracker lets you set a custom daily goal and track your intake throughout the day."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Protein Tracker score products?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Products are scored using a formula that weighs protein per price (highest weight), taste rating (medium weight), and penalizes high calorie density. The formula is: (protein/price * 10) + (taste * 3) - (calories_per_100g * 0.1)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Protein Tracker free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Protein Tracker is 100% free and open source. There are no ads, no accounts, and no subscriptions. All your data is stored locally on your device."
+          }
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <div style="max-width: 600px; margin: 40px auto; padding: 20px; font-family: system-ui, sans-serif;">
+        <h1>Protein Tracker</h1>
+        <p>Free open source tool to find the cheapest high-protein foods at your local stores.</p>
+        <h2>Features</h2>
+        <ul>
+          <li>Compare protein per dollar across products and stores</li>
+          <li>Smart scoring based on value, taste, and calories</li>
+          <li>Daily protein goal tracker</li>
+          <li>Import and export your product lists</li>
+          <li>Works with any store — add your own products</li>
+          <li>No signup, no ads, 100% free and open source</li>
+        </ul>
+        <h2>How scoring works</h2>
+        <p>Each product gets a score: (protein/price x 10) + (taste x 3) - (calories per 100g x 0.1)</p>
+        <p>Please enable JavaScript to use the interactive tracker.</p>
+        <p><a href="https://github.com/peaktwilight/protein">View source on GitHub</a></p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

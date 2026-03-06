@@ -112,7 +112,7 @@ function DailyTracker({ products, onClose }) {
             </div>
             <div className="bg-gray-50 rounded-lg p-3 text-center">
               <p className="text-xs text-gray-500 uppercase mb-1">Cost</p>
-              <p className="text-xl font-bold text-gray-900">CHF {totalCost.toFixed(2)}</p>
+              <p className="text-xl font-bold text-gray-900">{totalCost.toFixed(2)}</p>
             </div>
             <div className="bg-gray-50 rounded-lg p-3 text-center">
               <p className="text-xs text-gray-500 uppercase mb-1">Items</p>
@@ -209,7 +209,7 @@ function DailyTracker({ products, onClose }) {
                       </div>
                       <div className="flex gap-3 text-xs text-gray-500">
                         <span className="text-green-700 font-medium">{(item.protein * item.quantity).toFixed(1)}g protein</span>
-                        <span>CHF {(item.price * item.quantity).toFixed(2)}</span>
+                        <span>{(item.price * item.quantity).toFixed(2)}</span>
                       </div>
                     </div>
                     <button

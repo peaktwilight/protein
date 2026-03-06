@@ -5,7 +5,7 @@ function AddProductModal({ product, onClose, onSave }) {
   const [formData, setFormData] = useState({
     name: '',
     brand: '',
-    location: 'Migros',
+    location: '',
     taste: 5,
     price: 0,
     size: 0,
@@ -90,19 +90,28 @@ function AddProductModal({ product, onClose, onSave }) {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Store *</label>
-              <select
+              <input
+                type="text"
                 name="location"
                 value={formData.location}
                 onChange={handleChange}
+                list="store-suggestions"
                 className="w-full px-3 py-2 bg-white border border-gray-200 rounded-lg text-gray-900 text-sm focus:border-red-600 focus:outline-none"
-              >
-                <option value="Migros">Migros</option>
-                <option value="Coop">Coop</option>
-                <option value="Lidl">Lidl</option>
-                <option value="Aldi">Aldi</option>
-                <option value="Online">Online</option>
-                <option value="Other">Other</option>
-              </select>
+                placeholder="e.g., Walmart, Tesco, Aldi"
+                required
+              />
+              <datalist id="store-suggestions">
+                <option value="Walmart" />
+                <option value="Costco" />
+                <option value="Aldi" />
+                <option value="Lidl" />
+                <option value="Tesco" />
+                <option value="Migros" />
+                <option value="Coop" />
+                <option value="Trader Joe's" />
+                <option value="Whole Foods" />
+                <option value="Online" />
+              </datalist>
             </div>
           </div>
 
@@ -122,7 +131,7 @@ function AddProductModal({ product, onClose, onSave }) {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Price (CHF) *</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Price *</label>
               <input
                 type="number"
                 name="price"
@@ -196,7 +205,7 @@ function AddProductModal({ product, onClose, onSave }) {
                 <span className="font-medium text-gray-900">{formData.caloriesPer100}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-500">Protein/CHF:</span>
+                <span className="text-gray-500">Protein/$:</span>
                 <span className="font-medium text-green-700">
                   {formData.price > 0 ? (formData.protein / formData.price).toFixed(2) : '0.00'}g
                 </span>
