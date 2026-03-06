@@ -138,8 +138,8 @@ function App() {
             className="bg-red-600 hover:bg-red-700 rounded-lg p-4 text-left transition-colors"
           >
             <div className="flex items-center gap-2 mb-1">
-              <Target className="w-4 h-4 text-red-200" />
-              <p className="text-xs text-red-200 uppercase tracking-wide">Daily</p>
+              <Target className="w-4 h-4 text-white" />
+              <p className="text-xs text-white uppercase tracking-wide">Daily</p>
             </div>
             <p className="text-2xl font-bold text-white">Track</p>
           </button>
@@ -152,6 +152,7 @@ function App() {
             <div className="flex gap-1 p-1 bg-gray-100 rounded-lg w-fit">
               <button
                 onClick={() => setViewMode('table')}
+                aria-label="Table view"
                 className={`px-3 py-1.5 rounded-md flex items-center gap-1.5 text-sm font-medium transition-colors ${
                   viewMode === 'table'
                     ? 'bg-white text-gray-900 shadow-sm'
@@ -163,6 +164,7 @@ function App() {
               </button>
               <button
                 onClick={() => setViewMode('cards')}
+                aria-label="Card view"
                 className={`px-3 py-1.5 rounded-md flex items-center gap-1.5 text-sm font-medium transition-colors ${
                   viewMode === 'cards'
                     ? 'bg-white text-gray-900 shadow-sm'
@@ -179,6 +181,7 @@ function App() {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
+                aria-label="Sort products"
                 className="flex-1 sm:flex-initial px-3 pr-8 py-2 rounded-lg bg-white text-gray-900 text-sm border border-gray-200 focus:border-red-600 focus:outline-none"
               >
                 <option value="score">Sort by Score</option>
@@ -191,6 +194,7 @@ function App() {
               <select
                 value={filterLocation}
                 onChange={(e) => setFilterLocation(e.target.value)}
+                aria-label="Filter by store"
                 className="flex-1 sm:flex-initial px-3 pr-8 py-2 rounded-lg bg-white text-gray-900 text-sm border border-gray-200 focus:border-red-600 focus:outline-none"
               >
                 {locations.map(loc => (
@@ -272,7 +276,7 @@ function App() {
             100% free, no ads, no signup &bull; All data saved locally on your device
           </p>
           <p className="text-gray-500 text-sm mb-3">
-            Made by <a href="https://doruk.ch" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-600 transition-colors">Doruk</a> &bull; Open source &amp; community-driven
+            Made by <a href="https://doruk.ch" target="_blank" rel="noopener noreferrer" className="text-gray-700 underline hover:text-red-600 transition-colors">Doruk</a> &bull; Open source &amp; community-driven
           </p>
           <div className="flex items-center justify-center gap-3 text-xs">
             <a

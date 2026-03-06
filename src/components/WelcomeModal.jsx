@@ -39,7 +39,7 @@ function WelcomeModal({ onChooseDoruk, onStartFresh }) {
           </button>
         </div>
 
-        <p className="text-xs text-gray-400 text-center mt-6">
+        <p className="text-xs text-gray-500 text-center mt-6">
           Free • No ads • No signup
         </p>
       </div>
