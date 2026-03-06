@@ -25,17 +25,23 @@ function WelcomeModal({ onChooseDoruk, onStartFresh }) {
         <div className="space-y-3">
           <button
             onClick={onChooseDoruk}
-            className="w-full py-3 px-4 bg-red-600 hover:bg-red-700 rounded-lg text-white font-medium flex items-center justify-center gap-2 transition-colors"
+            className="w-full py-3 px-4 bg-red-600 hover:bg-red-700 rounded-lg text-white font-medium flex flex-col items-center gap-1 transition-colors"
           >
-            <Package className="w-4 h-4" />
-            Start with Sample Data ({STARTER_PRODUCTS_COUNT} products)
+            <span className="flex items-center gap-2">
+              <Package className="w-4 h-4" />
+              Load Example Data
+            </span>
+            <span className="text-xs text-red-200 font-normal">{STARTER_PRODUCTS_COUNT} products from Swiss stores — edit or replace anytime</span>
           </button>
           <button
             onClick={onStartFresh}
-            className="w-full py-3 px-4 bg-white hover:bg-gray-50 border border-gray-200 rounded-lg text-gray-700 font-medium flex items-center justify-center gap-2 transition-colors"
+            className="w-full py-3 px-4 bg-white hover:bg-gray-50 border border-gray-200 rounded-lg text-gray-700 font-medium flex flex-col items-center gap-1 transition-colors"
           >
-            <UserPlus className="w-4 h-4" />
-            Start Fresh
+            <span className="flex items-center gap-2">
+              <UserPlus className="w-4 h-4" />
+              Start Empty
+            </span>
+            <span className="text-xs text-gray-400 font-normal">Add your own products from any store</span>
           </button>
         </div>
 
