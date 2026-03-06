@@ -1,5 +1,5 @@
 import React from 'react'
-import { Edit, Trash2 } from 'lucide-react'
+import { Edit, Trash2, Star, StarHalf } from 'lucide-react'
 
 function ProductCard({ product, onEdit, onDelete }) {
   const getScoreStyle = (score) => {
@@ -10,12 +10,24 @@ function ProductCard({ product, onEdit, onDelete }) {
     return 'text-red-700 bg-red-50 border-red-200'
   }
 
-  const getTasteEmoji = (taste) => {
-    if (taste >= 9) return '😍'
-    if (taste >= 7) return '😊'
-    if (taste >= 5) return '😐'
-    if (taste >= 3) return '😕'
-    return '😣'
+  const getTasteColor = (taste) => {
+    if (taste >= 9) return 'text-green-500'
+    if (taste >= 7) return 'text-emerald-400'
+    if (taste >= 5) return 'text-amber-400'
+    if (taste >= 3) return 'text-orange-400'
+    return 'text-red-400'
+  }
+
+  const renderTasteStars = (taste) => {
+    const filled = Math.floor(taste / 2)
+    const half = taste % 2 >= 1
+    const color = getTasteColor(taste)
+    return (
+      <span className={`inline-flex items-center gap-px ${color}`}>
+        {[...Array(filled)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-current" />)}
+        {half && <StarHalf className="w-3.5 h-3.5 fill-current" />}
+      </span>
+    )
   }
 
   const getLocationStyle = (location) => {
@@ -56,7 +68,7 @@ function ProductCard({ product, onEdit, onDelete }) {
         <div className="bg-gray-50 rounded-lg p-3">
           <p className="text-xs text-gray-500 mb-1">Taste</p>
           <p className="text-lg font-bold text-gray-900">
-            {product.taste}/10 {getTasteEmoji(product.taste)}
+            <span className="mr-1">{product.taste}/10</span> {renderTasteStars(product.taste)}
           </p>
         </div>
       </div>

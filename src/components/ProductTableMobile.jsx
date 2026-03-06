@@ -1,5 +1,5 @@
 import React from 'react'
-import { Edit, Trash2 } from 'lucide-react'
+import { Edit, Trash2, Star, StarHalf } from 'lucide-react'
 
 function ProductTableMobile({ products, onEdit, onDelete }) {
   const getScoreStyle = (score) => {
@@ -10,12 +10,24 @@ function ProductTableMobile({ products, onEdit, onDelete }) {
     return 'text-red-700 bg-red-50'
   }
 
-  const getTasteEmoji = (taste) => {
-    if (taste >= 9) return '😍'
-    if (taste >= 7) return '😊'
-    if (taste >= 5) return '😐'
-    if (taste >= 3) return '😕'
-    return '😣'
+  const getTasteColor = (taste) => {
+    if (taste >= 9) return 'text-green-500'
+    if (taste >= 7) return 'text-emerald-400'
+    if (taste >= 5) return 'text-amber-400'
+    if (taste >= 3) return 'text-orange-400'
+    return 'text-red-400'
+  }
+
+  const renderTasteStars = (taste) => {
+    const filled = Math.floor(taste / 2)
+    const half = taste % 2 >= 1
+    const color = getTasteColor(taste)
+    return (
+      <span className={`inline-flex items-center gap-px ${color}`}>
+        {[...Array(filled)].map((_, i) => <Star key={i} className="w-3 h-3 fill-current" />)}
+        {half && <StarHalf className="w-3 h-3 fill-current" />}
+      </span>
+    )
   }
 
   const getLocationStyle = (location) => {
@@ -57,7 +69,8 @@ function ProductTableMobile({ products, onEdit, onDelete }) {
             </div>
             <div className="bg-gray-50 rounded p-2">
               <p className="text-xs text-gray-500">Taste</p>
-              <p className="font-semibold text-gray-900 text-sm">{product.taste} {getTasteEmoji(product.taste)}</p>
+              <p className="font-semibold text-gray-900 text-sm">{product.taste}</p>
+              {renderTasteStars(product.taste)}
             </div>
             <div className="bg-gray-50 rounded p-2">
               <p className="text-xs text-gray-500">Price</p>
