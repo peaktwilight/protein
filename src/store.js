@@ -434,6 +434,15 @@ const useStore = create(
       },
       
       importData: (data) => {
+        const isValidProduct = (p) => p && typeof p === 'object' && !Array.isArray(p) &&
+          typeof p.name === 'string' && typeof p.brand === 'string' && typeof p.location === 'string' &&
+          Number.isFinite(p.id) && Number.isFinite(p.taste) && p.taste >= 0 && p.taste <= 10 &&
+          Number.isFinite(p.price) && p.price > 0 && Number.isFinite(p.size) && p.size > 0 &&
+          Number.isFinite(p.protein) && Number.isFinite(p.calories) &&
+          Number.isFinite(p.proteinPer100) && Number.isFinite(p.caloriesPer100)
+        if (!Array.isArray(data) || !data.every(isValidProduct)) {
+          throw new Error('Invalid product data')
+        }
         const productsWithScores = data.map(p => ({
           ...p,
           proteinPerCHF: (p.protein / p.price).toFixed(2),
